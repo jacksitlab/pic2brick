@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*@media screen and (min-width: 576px) {*/
+
+.container {
+    width: 576px;
+    margin: 0 auto;
+}
+
+.box {
+    border-radius: 10px 10px;
+    width: 250px;
+    height: 250px;
+    margin: 19px;
+    vertical-align: top;
+    display: inline-block;
+    box-shadow: #000 2px 2px 6px 2px;
+    overflow: hidden;
+}
+
+.clickbox {
+    cursor: pointer;
+}
+
+.clickbox:hover {
+    box-shadow: #FFAB1E 2px 2px 6px 2px;
+}
+
+.box.loading:after {
+    margin: 15px;
+}
+
+.zoombox {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.8s ease;
+}
+
+.clickbox:hover .zoombox,
+.clickbox:focus .zoombox {
+    transform: scale(1.1);
+}
+
+.arrow {
+    cursor: pointer;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: #888;
+    box-shadow: #000 0 2px 6px;
+}
+.header-title{
+left:110px;
+position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
+}
+.header-title > span{
+    line-height: 50px;
+    font-size: 30px;
+    vertical-align: center;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: #666;
+    box-shadow: #000 0 -2px 6px;
+}
+.footer > ul{
+    float: right;
+}
+.footer > ul > li{
+    list-style-type: none;
+    display: inline-block;
+    padding:0 .5rem;
+    line-height: 30px;
+}
+.footer a {
+    text-decoration: none;
+    color: #CA7A22;
+    font-weight: 200;
+}
+#sidemenu {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    width: 250px;
+    background: #EEE;
+}
+
+#sidemenu.on {
+    left: 0;
+    animation: slidemenu-on .9s;
+}
+
+#sidemenu.off {
+    left: -250px;
+    animation: slidemenu-off 0.2s;
+}
+
+@keyframes slidemenu-on {
+    0% {
+        left: -250px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes slidemenu-off {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -250px
+    }
+}
+
+#sidemenu>ul {
+    padding: 0;
+}
+
+#sidemenu>ul>li>a {
+    padding: 0 0.5rem;
+    line-height: 2rem;
+    text-decoration: none;
+    background: #EEE;
+}
+
+#sidemenu>ul>li>a.active {
+    background: #FFF
+}
+
+#sidemenu>ul>li>a:hover {
+    background: #DDD;
+}
+
+
+/*}*/
+
+@media screen and (min-width: 720px) {
+    .container {
+        width: 720px;
+        margin: 0 auto;
+    }
+    .box {
+        width: 320px;
+        height: 320px;
+        margin: 20px;
+    }
+    .box.loading:after {
+        margin: 50px;
+    }
+}
+
+@media screen and (min-width: 1020px) {
+    .container {
+        width: 1020px;
+        margin: 0 auto;
+    }
+    .box {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+    }
+    .box.loading:after {
+        margin: 40px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 1280px;
+        margin: 0 auto;
+    }
+    .box {
+        width: 280px;
+        height: 280px;
+        margin: 20px;
+    }
+    .box.loading:after {
+        margin: 30px;
+    }
+}
+
+#sidemenu>ul {
+    list-style-type: none;
+    padding: 0rem;
+}
+
+#sidemenu>ul>li {
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+}
+
+#sidemenu>ul>li>a {
+    padding: 0 0.5rem;
+    display: block;
+    color: #222;
+}
+
+#sidemenu>ul>li>a>span {
+    margin-left: 12px
+}
+
+#loading-screen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 9999;
+}
+
+#loading-screen.on {
+    visibility: visible;
+    height: 100%;
+    width: 100%;
+}
+
+.login {
+    width: 500px;
+    margin: 100px auto;
+    font-size: 20px;
+}
+
+.login label {
+    display: block;
+    font-size: 16px;
+    margin-left: -5px;
+}
+
+.login div {
+    padding: 3px;
+}
+
+.login input {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.login button {
+    margin-top: 3px;
+    font-size: 20px;
+    display: block;
+    padding: 3px;
+    min-width: 100px;
+}
+
+.box.loading {
+    display: inline-block;
+}
+
+.box.loading:after {
+    content: " ";
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 8px solid #aaa;
+    border-color: #aaa transparent #aaa transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+.flash.loading:after {
+    background: none;
+    content: " ";
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 8px solid #666;
+    border-color: #666 transparent #666 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+.flash.loading{
+    color:#666;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#modal-wrapper.show {
+    display: block;
+}
+
+#modal-wrapper.hide {
+    display: none;
+}
+
+.modal>.modal-dialog {
+    width: 90%;
+    left: 5%;
+    top:5%;
+    position: absolute;
+    height: 90%;
+    background: #FFF;
+    border: 3px solid #999;
+    border-radius: 10px;
+    box-shadow: #666 3px 3px 6px;
+}
+
+.modal>.modal-dialog>.modal-content {
+    position: relative;
+    height: 100%;
+}
+
+.modal>.modal-dialog>.modal-content>.modal-header {
+    background: #444;
+    height: 50px;
+    color: #FFF;
+}
+
+.modal>.modal-dialog>.modal-content>.modal-header>h5 {
+    display: inline-block;
+    height: 50px;
+    line-height: 40px;
+    font-size: 28px;
+    margin-left: 10px;
+}
+
+.modal>.modal-dialog>.modal-content>.modal-header>.close {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    color: #CCC;
+    margin: 0 10px;
+}
+
+.modal>.modal-dialog>.modal-content>.modal-header>.close :hover {
+    color: #FFF;
+    font-weight: 600;
+}
+
+.modal>.modal-dialog>.modal-content>.modal-body {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.table{
+    border-spacing: 0;
+}
+.table > thead{
+    font-weight: bold;
+}
+.table tr{
+    line-height: 2rem;
+    border-bottom: 1px solid #aaa;
+}
+.table td,.table th{ 
+    padding: 0.15rem 2rem;
+}
+.table > tbody td{
+    border-bottom: 1px solid #DDD;
+}
+.table > thead th{
+    border-bottom: 2px solid #AAA;
+}
