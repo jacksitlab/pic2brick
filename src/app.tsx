@@ -1,11 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom'
 import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
-import 'app.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/jquery/dist/jquery.min.js'
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
+import '../node_modules/github-fork-ribbon-css/gh-fork-ribbon.css'
+import './app.css'
 import HomePage from 'components/homePage';
 import EditorPage from 'components/editorPage';
 import ImprintPage from 'components/imprintPage';
 import PrivacyPage from 'components/privacyPage';
+import DocumentationPage from 'components/docPage';
+import PageWrapper from 'components/pageWrapper';
 
 export const globals = {
     arrowWidthBig: 50,
@@ -26,7 +32,7 @@ export function getLoginPageUrl(): string {
     return `${window.origin}/#/login`;
 }
 const NotFoundPage = () => {
-    return <div className="container"><span>Page Not Found</span></div>
+    return <PageWrapper><div className="container"><span>Page Not Found</span></div></PageWrapper>
 }
 
 class App extends React.Component {
@@ -41,6 +47,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/" component={HomePage} exact />
                     <Route path="/editor" component={EditorPage} exact />
+                    <Route path="/documentation" component={DocumentationPage} exact />
                     <Route path="/imprint" component={ImprintPage} exact />
                     <Route path="/privacy" component={PrivacyPage} exact />
 

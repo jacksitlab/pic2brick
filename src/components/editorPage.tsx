@@ -1,6 +1,7 @@
 import * as React from 'react'
 import rasterService, { RasterService } from '../services/rasterService'
 import { ColorTable } from 'model/colorTable';
+import PageWrapper from './pageWrapper';
 
 interface IEditorState {
     img: string | ArrayBuffer | null;
@@ -74,7 +75,7 @@ class EditorPage extends React.Component<any, IEditorState> {
         </div>
     }
     render() {
-        return <div id="editor">
+        return <PageWrapper><div id="editor">
             <input type="file" onChange={(e) => { this.onFileInputChange(e); }} title="Load Image" />
             <div className="source">
                 {this.getImageHtml()}
@@ -85,6 +86,7 @@ class EditorPage extends React.Component<any, IEditorState> {
                 <canvas id="img"></canvas>
             </div>
         </div>
+        </PageWrapper>
     }
 }
 export default EditorPage
