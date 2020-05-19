@@ -3,3 +3,5 @@ dist/
 package-lock.json
 /docker/assembly
 .vscode/
+tmp/
+test.json
