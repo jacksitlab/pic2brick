@@ -87,6 +87,11 @@ module.exports = (env) => {
             }, {
                 from: './src/index.html',
                 to: '.'
+            }, {
+                from: './src/assets/*',
+                to: '.',
+                flatten: true
+
             }]),/*
           new requirejsPlugin({
             path: path.resolve(__dirname, "dist"),
