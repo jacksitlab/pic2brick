@@ -1,4 +1,5 @@
 const path = require('path');
+const express = require('express')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const requirejsPlugin = require('requirejs-webpack-plugin');
@@ -7,6 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = (env) => {
+    const distPath = path.resolve(__dirname, "dist");
     return [{
         entry: './src/app.tsx',
         output: {
@@ -44,11 +46,11 @@ module.exports = (env) => {
                     loader: ['style-loader', 'css-loader'],
                 },
                 {
-                    test: /\.(png|gif|jpg|svg)$/,
+                    test: /\.(png|gif|jpg|svg|json)$/,
                     use: [{
                         loader: 'url-loader',
                         options: {
-                            limit: 10000,
+                            limit: 100000,
 
                         }
                     }]
@@ -79,9 +81,6 @@ module.exports = (env) => {
 
         plugins: [
             new CopyWebpackPlugin([{
-                from: './node_modules/requirejs/require.js',
-                to: '.'
-            }, {
                 from: './src/favicon.ico',
                 to: '.'
             }, {
@@ -89,7 +88,7 @@ module.exports = (env) => {
                 to: '.'
             }, {
                 from: './src/assets/*',
-                to: '.',
+                to: 'assets/',
                 flatten: true
 
             }]),/*
@@ -105,7 +104,14 @@ module.exports = (env) => {
             new HtmlWebpackPlugin({
                 template: './src/index.html'
             })
-        ]
+        ],
+        devServer: {
+            contentBase: distPath, //disk location
+            watchContentBase: true,
+            setup(app) {
+                app.use('assets/', express.static('/src/assets'));
+            }
+        }
     }]
 
 }
