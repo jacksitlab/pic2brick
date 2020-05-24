@@ -330,3 +330,24 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     display: inline-block;
     width: 7rem;
 }
+
+.brick-item{
+    list-style-type: none;
+}
+.brick-item > span{
+
+}
+.brick-item div.color-table{
+    margin:0;
+    padding:0;
+    line-height: 0;
+}
+.brick-item  div.color-table > div.color-table-item{
+    width:1rem;
+    height: 1rem;
+    display: inline-block;
+   
+}
+.brick-item  div.color-table > div.color-table-item:hover{
+    border: 2px solid #FFAB1E;
+}

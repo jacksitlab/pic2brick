@@ -2,18 +2,57 @@ import * as React from 'react';
 import { faCogs, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { loadBricksData } from 'services/assetService';
+import { BrickData } from 'model/brickData';
 export interface IEditorSettingsState {
     show: boolean;
+    brickData: BrickData | null;
 }
 library.add(faCogs)
 class EditorSettings extends React.Component<any, IEditorSettingsState>{
 
     public constructor(props: any) {
         super(props);
-        this.state = { show: true }
+        this.state = { show: true, brickData: null }
+        loadBricksData().then((data) => {
+            this.setState({ brickData: data });
+        }).catch((error) => {
+
+        })
     }
     private showSettings(): void {
         this.setState({ show: true })
+    }
+
+    private printTilesList(): JSX.Element {
+        let i = 0;
+        return <div className="container-fluid">{this.state.brickData == null ? "" : this.state.brickData.tiles.map((item) => {
+            return <div key={item.partNumber} className="brick-item row">
+                <div className="col col-12">
+                    <span style={{ display: 'block' }}>{item.partNumber}</span>
+                    <div className="color-table">{item.availableColors.map((color) => {
+                        return <div key={`${item.partNumber}_${color.id}_${i++}`} className="color-table-item" style={{ background: color.code }}></div>
+                    })}
+                    </div>
+                </div>
+            </div>
+        })}
+        </div>
+    }
+    private printPlatesList(): JSX.Element {
+        let i = 0;
+        return <div className="container-fluid">{this.state.brickData == null ? "" : this.state.brickData.plates.map((item) => {
+            return <div key={item.partNumber} className="brick-item row">
+                <div className="col col-12">
+                    <span style={{ display: 'block' }}>{item.partNumber}</span>
+                    <div className="color-table">{item.availableColors.map((color) => {
+                        return <div key={`${item.partNumber}_${color.id}_${i++}`} className="color-table-item" style={{ background: color.code }}></div>
+                    })}
+                    </div>
+                </div>
+            </div>
+        })}
+        </div>
     }
     render() {
         return <div id="editor-settings" className={this.state.show ? "show" : ""}>
@@ -50,18 +89,14 @@ class EditorSettings extends React.Component<any, IEditorSettingsState>{
                     <h3 className="col col-11 offset-1">Bricks</h3>
                     <div className="col col-5 offset-1">
                         <div className="form-group">
-                            <label className="col-12" >original</label>
-                            <input type="number" style={{ marginLeft: '4rem' }} className="form-control inline" id="tbx_settings_orig_size_width" />
-                            <span> x </span>
-                            <input type="number" className="form-control inline" id="tbx_settings_orig_size_height" />
+                            <label className="col-12" >tiles</label>
+                            {this.printTilesList()}
                         </div>
                     </div>
                     <div className="col col-5 offset-1">
                         <div className="form-group">
-                            <label className="col-12" >scaled</label>
-                            <input type="number" style={{ marginLeft: '4rem' }} className="form-control inline" id="tbx_settings_scaled_size_width" />
-                            <span> x </span>
-                            <input type="number" className="form-control inline" id="tbx_settings_scaled_size_height" />
+                            <label className="col-12" >plates</label>
+                            {this.printPlatesList()}
                         </div>
                     </div>
                 </div>

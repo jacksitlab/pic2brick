@@ -17,14 +17,13 @@ class Color:
     def __init__(self, id, name, rgb, isTransient):
         self.id = id
         self.name = name
-        self.rgb = rgb
-        self.isTransient = isTransient
+        self.code = self.getRGBACode(rgb, isTransient)
 
-    def getRGBACode(self):
-        return "#"+self.rgb+("7F" if self.isTransient else "FF")
+    def getRGBACode(self, rgb, isTransient):
+        return "#"+rgb+("7F" if isTransient else "FF")
 
     def __str__(self):
-        return str(self.id)+": "+self.name+"("+self.getRGBACode()+")"
+        return str(self.id)+": "+self.name+"("+self.code+")"
 
 
 class BrickPart:
@@ -100,6 +99,12 @@ class OutputObject:
                         self.plates.append(part)
                     else:
                         part.addColor(colorId)
+
+    def findColor(self, colorId):
+        for color in self.availableColors:
+            if color.id == colorId:
+                return color
+        return None
 
     def findTile(self, partNo):
         for plate in self.tiles:

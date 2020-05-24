@@ -1,5 +1,5 @@
 import { requestRest, ResponseData } from "./restService";
-import { BrickData } from "model/brickData";
+import { BrickData, BrickDataResponse } from "model/brickData";
 
 const cache: { brickData: BrickData | null, imprint: string | null, privacy: string | null, doc: string | null } = {
     brickData: null,
@@ -7,27 +7,20 @@ const cache: { brickData: BrickData | null, imprint: string | null, privacy: str
     privacy: null,
     doc: null
 }
-export function loadBricksData() {
+export async function loadBricksData(): Promise<BrickData> {
     if (cache.brickData == null) {
-        const response = requestRest<BrickData>('/assets/bricks.lego.json');
-        response.then((data) => {
-            if (data.code >= 200 && data.code < 300) {
-                cache.brickData = data.data;
-            }
-        })
-        return response;
+        const response = await requestRest<BrickDataResponse>('/assets/bricks.lego.json');
+        if (response.code >= 200 && response.code < 300) {
+            cache.brickData = new BrickData(response.data);
+        }
+
+    }
+    if (cache.brickData) {
+        return cache.brickData;
+
     }
     else {
-        return new Promise<ResponseData<BrickData>>((resolve, reject) => {
-            if (cache.brickData) {
-                resolve({
-                    code: 200, data: cache.brickData
-                });
-            }
-            else {
-                reject("problem while caching")
-            }
-        });
+        throw new Error("problem with cache");
     }
 
 }
