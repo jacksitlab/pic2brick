@@ -2,15 +2,19 @@ import * as React from 'react'
 import { NavLink } from 'react-router-dom';
 
 
+
 class PageWrapper extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
-        this.comparisonListChangedListener = this.comparisonListChangedListener.bind(this);
+
     }
-
-    private comparisonListChangedListener() {
-
+    private getEditorBar(): JSX.Element {
+        return <div className="dropdown navbar-nav mr-auto" >
+            <input type="number" className="form-control col-3 mx-2" placeholder="width" onChange={(e) => { }} value={22}></input>
+            <span style={{ color: '#EEEEEE' }} className=""> x </span>
+            <input type="number" className="form-control col-3 mx-2" placeholder="height" onChange={(e) => { }} value={22}></input>
+        </div>
     }
     render() {
         return (
@@ -31,8 +35,8 @@ class PageWrapper extends React.Component<any, any> {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/privacy">Privacy</NavLink>
                             </li>
-
                         </ul>
+                        {this.props.isEditor ? this.getEditorBar() : ""}
                         <div className="form-inline" >
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">

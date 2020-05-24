@@ -1,12 +1,18 @@
 import * as React from 'react'
 import PageWrapper from './pageWrapper'
+import { loadImprint } from 'services/assetService';
+import MarkdownContentPage, { IMarkdownContentPageProps } from './markdownContentPage';
 
 
-class ImprintPage extends React.Component {
+class ImprintPage extends MarkdownContentPage {
 
-
-    render() {
-        return <PageWrapper><div>imprint</div></PageWrapper>
+    public constructor(props: any) {
+        super(props);
+        loadImprint().then((response) => {
+            this.setState({ content: response.data })
+        }).catch((error) => {
+            this.setState({ content: `${error}` })
+        })
     }
 }
 export default ImprintPage

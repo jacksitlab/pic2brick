@@ -2,10 +2,15 @@
     margin: 0;
     padding: 0;
 }
-
+html ,body{
+    height: 100%;
+}
 
 /*@media screen and (min-width: 576px) {*/
-
+#app{
+    height: 100%;
+    overflow: hidden;
+}
 .container {
     width: 576px;
     margin: 0 auto;
@@ -93,61 +98,6 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     color: #CA7A22;
     font-weight: 200;
 }
-#sidemenu {
-    position: fixed;
-    top: 50px;
-    bottom: 0;
-    width: 250px;
-    background: #EEE;
-}
-
-#sidemenu.on {
-    left: 0;
-    animation: slidemenu-on .9s;
-}
-
-#sidemenu.off {
-    left: -250px;
-    animation: slidemenu-off 0.2s;
-}
-
-@keyframes slidemenu-on {
-    0% {
-        left: -250px;
-    }
-    100% {
-        left: 0px;
-    }
-}
-
-@keyframes slidemenu-off {
-    0% {
-        left: 0;
-    }
-    100% {
-        left: -250px
-    }
-}
-
-#sidemenu>ul {
-    padding: 0;
-}
-
-#sidemenu>ul>li>a {
-    padding: 0 0.5rem;
-    line-height: 2rem;
-    text-decoration: none;
-    background: #EEE;
-}
-
-#sidemenu>ul>li>a.active {
-    background: #FFF
-}
-
-#sidemenu>ul>li>a:hover {
-    background: #DDD;
-}
-
 
 /*}*/
 
@@ -196,25 +146,6 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     }
 }
 
-#sidemenu>ul {
-    list-style-type: none;
-    padding: 0rem;
-}
-
-#sidemenu>ul>li {
-    line-height: 2.5rem;
-    font-size: 1.2rem;
-}
-
-#sidemenu>ul>li>a {
-    padding: 0 0.5rem;
-    display: block;
-    color: #222;
-}
-
-#sidemenu>ul>li>a>span {
-    margin-left: 12px
-}
 
 #loading-screen {
     position: fixed;
@@ -233,34 +164,6 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     width: 100%;
 }
 
-.login {
-    width: 500px;
-    margin: 100px auto;
-    font-size: 20px;
-}
-
-.login label {
-    display: block;
-    font-size: 16px;
-    margin-left: -5px;
-}
-
-.login div {
-    padding: 3px;
-}
-
-.login input {
-    font-size: 20px;
-    line-height: 24px;
-}
-
-.login button {
-    margin-top: 3px;
-    font-size: 20px;
-    display: block;
-    padding: 3px;
-    min-width: 100px;
-}
 
 .box.loading {
     display: inline-block;
@@ -389,4 +292,41 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
 }
 .table > thead th{
     border-bottom: 2px solid #AAA;
+}
+
+
+#editor-wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top:3.5rem;
+    overflow: hidden
+}
+#editor{
+    position: absolute;
+    height: 100%;
+    left:0;
+    width: 100%;
+    background:#f00;
+}
+#editor-settings{
+    position: absolute;
+    height: 100%;
+    left:100%;
+    width: 100%;
+    background:#FFF;
+}
+
+#editor-settings.show{
+    left:0
+}
+#btn_editor_settings_show{
+    position: absolute;
+    width:5rem;
+    left:-5rem;
+    top:50%;
+}
+.form-control.inline{
+    display: inline-block;
+    width: 7rem;
 }
