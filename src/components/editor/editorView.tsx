@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ColorTable } from 'model/colorTable';
 import rasterService, { RasterService } from 'services/rasterService';
+import BrickSvg from 'components/brickSvg';
+import { BrickItem, BrickColor, BrickItemWithPosition } from 'model/brickData';
 
 
 interface IEditorState {
@@ -75,14 +77,19 @@ class EditorView extends React.Component<any, IEditorState>{
         </div>
     }
     render() {
+        const items: BrickItemWithPosition[] = [];
+        const colors: BrickColor[] = [];
+        items.push({ partNumber: 1, availableColors: colors, fmt: "0", position: { x: 0, y: 0 } })
+        items.push({ partNumber: 1, availableColors: colors, fmt: "0", position: { x: 1, y: 0 } })
+        items.push({ partNumber: 1, availableColors: colors, fmt: "0", position: { x: 1, y: 1 } })
         return <div id="editor"> <input type="file" onChange={(e) => { this.onFileInputChange(e); }} title="Load Image" />
             <div className="source">
                 {this.getImageHtml()}
                 {/* {this.state.img == null ? <input type="file" onChange={(e) => { this.onFileInputChange(e); }} title="Load Image" /> : this.getImageHtml()} */}
             </div>
             <button onClick={() => { this.onReload() }} >Reload</button>
-            <div className="dest">
-                <canvas id="img"></canvas>
+            <div className="dest my-1">
+                <BrickSvg items={items} size={{ width: 40, height: 30 }} />
             </div></div>
     }
 }

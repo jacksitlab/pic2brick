@@ -13,7 +13,7 @@ class EditorSettings extends React.Component<any, IEditorSettingsState>{
 
     public constructor(props: any) {
         super(props);
-        this.state = { show: true, brickData: null }
+        this.state = { show: false, brickData: null }
         loadBricksData().then((data) => {
             this.setState({ brickData: data });
         }).catch((error) => {
@@ -45,8 +45,14 @@ class EditorSettings extends React.Component<any, IEditorSettingsState>{
             return <div key={item.partNumber} className="brick-item row">
                 <div className="col col-12">
                     <span style={{ display: 'block' }}>{item.partNumber}</span>
-                    <div className="color-table">{item.availableColors.map((color) => {
-                        return <div key={`${item.partNumber}_${color.id}_${i++}`} className="color-table-item" style={{ background: color.code }}></div>
+                    <div className="bs-tooltip-top color-table">{item.availableColors.map((color) => {
+                        return <div id={`${item.partNumber}_${color.id}_${i++}`}
+                            key={`${item.partNumber}_${color.id}_${i++}`}
+                            className="color-table-item"
+                            data-toggle="tooltip" data-placement="top" data-html="true" title={color.name}
+                            style={{ background: color.code }}>
+
+                        </div>
                     })}
                     </div>
                 </div>

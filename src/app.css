@@ -307,7 +307,7 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     height: 100%;
     left:0;
     width: 100%;
-    background:#f00;
+    background:#FFF;
 }
 #editor-settings{
     position: absolute;
@@ -342,12 +342,12 @@ position: absolute; top: 0;  height: 100%; right: 0; vertical-align: middle
     padding:0;
     line-height: 0;
 }
-.brick-item  div.color-table > div.color-table-item{
+.brick-item  div.color-table > .color-table-item{
     width:1rem;
     height: 1rem;
     display: inline-block;
    
 }
-.brick-item  div.color-table > div.color-table-item:hover{
+.brick-item  div.color-table > .color-table-item:hover{
     border: 2px solid #FFAB1E;
 }
